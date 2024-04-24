@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BowlingGameTest {
-	BowlingGame game;
+	private BowlingGame game;
 
 	@BeforeEach
 	void setUp() {
@@ -26,10 +26,21 @@ class BowlingGameTest {
 
 	@Test
 	void testScore0TousFrames(){
-		for (int i = 0 ; i < 20 ; i++) {
-			game.roll(0);
-		}
+		int pinsdown = 0;
+		rolls(20,pinsdown);
 		assertEquals(game.score(),0);
 	}
 	
+	@Test
+	void testScore1TousFrames() {
+		int pinsdown = 1;
+		rolls(20,pinsdown);
+		assertEquals(game.score(),20);
+	}
+	
+	void rolls(int times,int pinsdown) {
+		for (int i = 0 ; i < times ; i++) {
+			game.roll(pinsdown);
+		}
+	}
 }
